@@ -18,4 +18,7 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist
           publish_branch: gh-pages
-          force: true
+          force_orphan: true   # replaces old force: true
+          user_name: "github-actions"
+          user_email: "github-actions@github.com"
+          commit_message: "Deploy pre-built site"
