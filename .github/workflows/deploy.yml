@@ -26,7 +26,7 @@ jobs:
 
       # 4️⃣ Build the project at repo root
       - name: Build project
-        run: npm run build
+        run: npx run build
         working-directory: .   # <-- root of repo
 
       # 5️⃣ Optional: list dist folder
