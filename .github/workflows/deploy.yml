@@ -18,15 +18,10 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: "npm"
 
-      # 3️⃣ Install dependencies and generate lock file online
+      # 3️⃣ Install dependencies
       - name: Install dependencies
-        run: |
-          node -v
-          npm -v
-          npm install
-          npm shrinkwrap  # <-- generates npm-shrinkwrap.json for Actions
+        run: npm install
         working-directory: ./docs
 
       # 4️⃣ Build the project
@@ -34,12 +29,7 @@ jobs:
         run: npm run build
         working-directory: ./docs
 
-      # 5️⃣ Optional: list dist folder
-      - name: List build folder
-        run: ls -R dist
-        working-directory: ./docs
-
-      # 6️⃣ Deploy to GitHub Pages
+      # 5️⃣ Deploy dist folder directly (lock file not required)
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
@@ -47,3 +37,4 @@ jobs:
           publish_dir: ./docs/dist
           publish_branch: gh-pages
           force: true
+          skip_cleanup: true   # <-- important to bypass lock file check
