@@ -3,7 +3,7 @@
   "private": true,
   "version": "1.0.0",
   "type": "module",
-  "description": "My docs site",  // <-- added this line
+  "description": "My docs site",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
