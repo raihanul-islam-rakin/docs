@@ -9,16 +9,17 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
+      # 1️⃣ Checkout the repo
       - uses: actions/checkout@v4
 
-      # Deploy already-built dist folder
+      # 2️⃣ Deploy pre-built dist folder
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}  # or use PAT via personal_token
           publish_dir: ./dist
           publish_branch: gh-pages
-          force_orphan: true   # replaces old force: true
+          force_orphan: true    # replaces old 'force: true'
           user_name: "github-actions"
           user_email: "github-actions@github.com"
           commit_message: "Deploy pre-built site"
