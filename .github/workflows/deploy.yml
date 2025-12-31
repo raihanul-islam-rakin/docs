@@ -8,23 +8,34 @@ on:
 jobs:
   build-deploy:
     runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
 
+    steps:
+      # 1️⃣ Checkout the repo
+      - uses: actions/checkout@v4
+
+      # 2️⃣ Setup Node and verify npm exists
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: "20"
+          node-version: 20
+          cache: "npm"
 
+      # 3️⃣ Install dependencies and verify Node & npm
       - name: Install dependencies
-        run: npm install
+        run: |
+          node -v   # debug: check node version
+          npm -v    # debug: check npm version
+          npm ci    # install exact dependencies
 
+      # 4️⃣ Build the project
       - name: Build project
         run: npm run build
 
+      # 5️⃣ Optional: list dist folder for debugging
       - name: List build folder
         run: ls -R dist
 
+      # 6️⃣ Deploy to GitHub Pages
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
