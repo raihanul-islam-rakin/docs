@@ -24,9 +24,9 @@ jobs:
         run: npm install
         working-directory: .
 
-      # 4️⃣ Build the project safely
+      # 4️⃣ Build the project using local Vite binary (fixes permission denied)
       - name: Build project
-        run: npm run build --if-present
+        run: ./node_modules/.bin/vite build
         working-directory: .
 
       # 5️⃣ Optional: list dist folder
