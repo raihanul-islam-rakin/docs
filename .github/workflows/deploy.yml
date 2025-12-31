@@ -19,22 +19,27 @@ jobs:
         with:
           node-version: 20
 
-      # 3️⃣ Install dependencies
+      # 3️⃣ Install dependencies at repo root
       - name: Install dependencies
         run: npm install
-        working-directory: ./docs
+        working-directory: .   # <-- root of repo
 
-      # 4️⃣ Build the project
+      # 4️⃣ Build the project at repo root
       - name: Build project
         run: npm run build
-        working-directory: ./docs
+        working-directory: .   # <-- root of repo
 
-      # 5️⃣ Deploy dist folder directly (lock file not required)
+      # 5️⃣ Optional: list dist folder
+      - name: List build folder
+        run: ls -R dist
+        working-directory: .   # <-- root of repo
+
+      # 6️⃣ Deploy to GitHub Pages
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./docs/dist
+          publish_dir: ./dist   # <-- dist folder at repo root
           publish_branch: gh-pages
           force: true
-          skip_cleanup: true   # <-- important to bypass lock file check
+          skip_cleanup: true   # <-- bypass lock file check
