@@ -25,7 +25,7 @@ jobs:
         run: |
           node -v   # debug: check node version
           npm -v    # debug: check npm version
-          npm ci    # install exact dependencies
+          npm install    # install dependencies without lock file
 
       # 4️⃣ Build the project
       - name: Build project
