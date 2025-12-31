@@ -1,4 +1,4 @@
-name: Deploy Docs
+name: Deploy React + Vite to GitHub Pages
 
 on:
   push:
@@ -17,18 +17,16 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 20  # no cache to avoid npm issues
 
       # 3️⃣ Install dependencies
       - name: Install dependencies
-        run: npm install
-        working-directory: .
+        run: npm ci
+        working-directory: .   # repo root
 
-      # 4️⃣ Build the project (fix permission denied)
+      # 4️⃣ Build the project using npx
       - name: Build project
-        run: |
-          chmod +x ./node_modules/.bin/vite
-          ./node_modules/.bin/vite build
+        run: npx vite build
         working-directory: .
 
       # 5️⃣ Optional: list dist folder
