@@ -20,29 +20,30 @@ jobs:
           node-version: 20
           cache: "npm"
 
-      # 3️⃣ Install dependencies in the correct folder
+      # 3️⃣ Install dependencies
       - name: Install dependencies
         run: |
           node -v
           npm -v
           npm install
-        working-directory: .   # <-- repo root
+        working-directory: .   # repo root
 
       # 4️⃣ Build the project
       - name: Build project
         run: npm run build
-        working-directory: .   # <-- repo root
+        working-directory: .   # repo root
 
-      # 5️⃣ Optional: list dist folder
+      # 5️⃣ Optional: list dist folder for debugging
       - name: List build folder
         run: ls -R dist
-        working-directory: .   # <-- repo root
+        working-directory: .   # repo root
 
-      # 6️⃣ Deploy to GitHub Pages
+      # 6️⃣ Deploy to GitHub Pages (bypass lock file issue)
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist   # <-- dist folder in repo root
+          publish_dir: ./dist
           publish_branch: gh-pages
           force: true
+          keep_files: false   # <-- bypass lock file check
