@@ -1,0 +1,34 @@
+[
+  {
+    "title": "Zillow",
+    "description": "Objective: We can connect our Discord channel with any spreadsheet. Whenever an individual updates their project working status, an automatic notification is sent to Discord in real time. This can also be applied to other workflows like leave management or task updates.\nExpected Result: Team members can stay updated on project progress and task changes. The data can be used to generate summary boards in another Discord channel, with detailed monthly reports that can also be generated automatically. \nLine 3\nLine 4\nLine 5\nFull description continues here..."
+  },
+  {
+    "title": "Discord",
+    "description": "How to setup Discord integration.\nLine 2 of description.\nLine 3.\nMore details..."
+  },
+  {
+    "title": "Spreadsheet",
+    "description": "Working with spreadsheets programmatically.\nInclude multiple lines separated by \\n."
+  },
+  {
+    "title": "Python",
+    "description": "Python scripts and automation topics.\nFull details here..."
+  },
+  {
+    "title": "Webhook",
+    "description": "Setup and usage of webhooks.\nFull details here..."
+  },
+  {
+    "title": "Authentication",
+    "description": "Authentication methods and strategies.\nFull details here..."
+  },
+  {
+    "title": "Email",
+    "description": "Email integration and notifications.\nFull details here..."
+  },
+  {
+    "title": "Phone Number",
+    "description": "Phone number validation and usage.\nFull details here..."
+  }
+]
