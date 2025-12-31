@@ -17,29 +17,29 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 20   # clean Node install, no caching
 
-      # 3️⃣ Install dependencies at repo root
+      # 3️⃣ Install dependencies
       - name: Install dependencies
         run: npm install
-        working-directory: .   # <-- root of repo
+        working-directory: .
 
-      # 4️⃣ Build the project at repo root
+      # 4️⃣ Build the project safely
       - name: Build project
-        run: npx run build
-        working-directory: .   # <-- root of repo
+        run: npm run build --if-present
+        working-directory: .
 
       # 5️⃣ Optional: list dist folder
       - name: List build folder
         run: ls -R dist
-        working-directory: .   # <-- root of repo
+        working-directory: .
 
       # 6️⃣ Deploy to GitHub Pages
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist   # <-- dist folder at repo root
+          publish_dir: ./dist
           publish_branch: gh-pages
           force: true
-          skip_cleanup: true   # <-- bypass lock file check
+          skip_cleanup: true
