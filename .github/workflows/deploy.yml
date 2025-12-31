@@ -20,12 +20,13 @@ jobs:
           node-version: 20
           cache: "npm"
 
-      # 3️⃣ Install dependencies and verify Node & npm
+      # 3️⃣ Install dependencies and generate lock file
       - name: Install dependencies
         run: |
-          node -v   # debug: check node version
-          npm -v    # debug: check npm version
-          npm install    # install dependencies without lock file
+          node -v               # debug: check node version
+          npm -v                # debug: check npm version
+          npm install           # install dependencies
+          npm shrinkwrap        # generate npm-shrinkwrap.json as lock file
 
       # 4️⃣ Build the project
       - name: Build project
