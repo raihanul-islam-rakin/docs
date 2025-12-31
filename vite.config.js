@@ -3,8 +3,8 @@ import react from "@vitejs/plugin-react";
 
 export default defineConfig({
   plugins: [react()],
-  base: "/docs/",      // required for GitHub Pages
+  base: "/docs/",   // must match your repo name exactly
   build: {
-    outDir: "dist"     // ensure output folder is dist
+    outDir: "dist"
   }
 });
