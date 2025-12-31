@@ -1,4 +1,4 @@
-name: Deploy React + Vite to GitHub Pages
+name: Deploy dist to GitHub Pages
 
 on:
   push:
@@ -6,35 +6,12 @@ on:
       - main
 
 jobs:
-  build-deploy:
+  deploy:
     runs-on: ubuntu-latest
-
     steps:
-      # 1️⃣ Checkout the repo
       - uses: actions/checkout@v4
 
-      # 2️⃣ Setup Node
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20  # no cache to avoid npm issues
-
-      # 3️⃣ Install dependencies
-      - name: Install dependencies
-        run: npm ci
-        working-directory: .   # repo root
-
-      # 4️⃣ Build the project using npx
-      - name: Build project
-        run: npx vite build
-        working-directory: .
-
-      # 5️⃣ Optional: list dist folder
-      - name: List build folder
-        run: ls -R dist
-        working-directory: .
-
-      # 6️⃣ Deploy to GitHub Pages
+      # Deploy already-built dist folder
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
@@ -42,4 +19,3 @@ jobs:
           publish_dir: ./dist
           publish_branch: gh-pages
           force: true
-          skip_cleanup: true
